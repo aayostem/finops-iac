@@ -1,0 +1,33 @@
+replicaCount: 3
+
+image:
+  repository: your-registry/voice-feature-store
+  tag: latest
+  pullPolicy: IfNotPresent
+
+environment: production
+
+kafka:
+  bootstrapServers: "kafka-cluster:9092"
+
+redis:
+  host: "redis-cluster"
+  port: 6379
+
+service:
+  type: LoadBalancer
+  port: 8000
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
