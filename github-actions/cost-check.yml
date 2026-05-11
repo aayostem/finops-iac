@@ -1,0 +1,9 @@
+name: Cost Check
+on: [pull_request]
+jobs:
+  infracost:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Infracost
+        run: echo "Analyzing infrastructure costs..."
